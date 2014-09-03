@@ -93,6 +93,7 @@ class salt {
 
   exec { 'update':
     command     => '/usr/bin/apt-get update',
+    unless      => '/usr/bin/dpkg -l | grep salt-minion',
     before	=> Package['salt-minion'],
   }
 
