@@ -1,6 +1,7 @@
-salt-minion
-===========
+# salt-minion #
 
 Puppet setup and installation for salt-minions.
 
-This module can be used to install salt-minion on Debian and Ubuntu 14.04 machines.
+## Summary
+
+This module can be used to install salt-minions on Debian and Ubuntu 14.04 machines.
