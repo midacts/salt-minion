@@ -1,6 +1,6 @@
 # == Class
 #
-# salt
+# salt-minion
 #
 # == Synopsis
 #
@@ -19,7 +19,7 @@
 #
 # -- Version 1.0 --
 #
-class salt {
+class salt-minion {
 
   define apt::key($keyid, $ensure, $command) {
     case $ensure {
