@@ -55,7 +55,7 @@ class salt-minion {
 
       file { '/etc/apt/sources.list.d/salt.list':
         ensure      => present,
-        content     => template('salt/salt.list.erb.deb'),
+        content     => template('salt-minion/salt.list.erb.deb'),
         owner       => root,
         group       => root,
         mode        => 644,
@@ -74,7 +74,7 @@ class salt-minion {
 
       file { '/etc/apt/sources.list.d/salt.list':
         ensure      => present,
-        content     => template('salt/salt.list.erb.ubu'),
+        content     => template('salt-minion/salt.list.erb.ubu'),
         owner       => root,
         group       => root,
         mode        => 644,
