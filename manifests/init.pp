@@ -15,9 +15,9 @@
 #
 # == Date
 #
-# 29th of August, 2014
+# 10th of September, 2014
 #
-# -- Version 1.0 --
+# -- Version 1.1 --
 #
 class salt-minion {
 
@@ -89,17 +89,36 @@ class salt-minion {
 
     }
 
+    centos: {
+      
+      exec { 'salt-rpm':
+        command	=> 'rpm -Uvh http://mirror.pnl.gov/epel/5/i386/epel-release-5-4.noarch.rpm',
+        unless	=> 'yum list installed | grep salt-minion',
+        path 	=> ['/usr/bin', '/bin', '/sbin'],
+      }
+
+    }
+
   }
 
-  exec { 'update':
-    command     => '/usr/bin/apt-get update',
-    unless      => '/usr/bin/dpkg -l | grep salt-minion',
-    before	=> Package['salt-minion'],
+  if ($operatingsystem == 'debian') or ($operatingsystem == 'ubuntu') {
+
+    exec { 'update':
+      command     => '/usr/bin/apt-get update',
+      unless      => '/usr/bin/dpkg -l | grep salt-minion',
+      before	=> Package['salt-minion'],
+    }
+
   }
 
   package { 'salt-minion':
     ensure      => latest,
-    require	=> Exec['update'],
+    notify	=> Service['salt-minion'],
+  }
+
+  service { 'salt-minion':
+    enable	=> true,
+    ensure	=> true,
   }
 
 }
